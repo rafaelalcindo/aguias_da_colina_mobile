@@ -11,19 +11,47 @@ import {
     Image,
     ActivityIndicator
 } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage'
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Creators as LoginActions } from '../../store/duck/login'
+ 
 class Login extends Component {
 
     state ={
         username: '',
         password: ''
     }
+    
+
+    componentDidUpdate() {
+        this.loadNextPage()
+    }
+
+
+    handleSubmit = async () => {
+        const { username, password } = this.state;
+        const { loginRequest } = this.props;
+
+        loginRequest(username, password)        
+    }
+
+    
+    loadNextPage = async () => {
+        const token = await AsyncStorage.getItem('@token')
+        console.log(token)
+    }
 
     render() {
         const { username, password } = this.state;
+        const { error, loading } = this.props;
+
+        // console.log(this.props)
 
         return (
             <View style={styles.container} >
+
                 <StatusBar barStyle={"light-content"} />
 
                 <View style={styles.viewImage} >
@@ -40,7 +68,8 @@ class Login extends Component {
                     Acesse com o seu usuário
                 </Text>
 
-                <View style={styles.form} >
+                <View style={styles.form} > 
+                    { error && <Text>Usuário ou senha inválida</Text>}
                     <TextInput
                         style={styles.input}
                         autoCapitalize="none"
@@ -61,8 +90,13 @@ class Login extends Component {
                         onChangeText={text => this.setState({ password: text })}
                      />
 
-                     <TouchableOpacity style={styles.button} >
-                        <Text style={styles.buttonText} >Entrar</Text>
+                     <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
+                        { loading ? 
+                            <ActivityIndicator size="small" color="#FFF" />  
+                            : 
+                            <Text style={styles.buttonText} >Entrar</Text>
+                        }
+                        
                      </TouchableOpacity>
 
                 </View>
@@ -71,4 +105,14 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+const mapStateToProps = state => ({
+    error: state.login.error,
+    loading: state.login.loading,
+    user: state.login.user,
+    token: state.login.token
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators(LoginActions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -14,6 +14,7 @@ export const Types = {
      username: null,
      password: null,
      user: null,
+     token: null,
      loading: false,
      error: false
  }
@@ -28,8 +29,9 @@ export const Types = {
                 username: action.payload.username,
                 password: action.payload.password,
                 user: action.payload.user,
+                token: action.payload.token,
                 error: false,
-                loading: false
+                loading: true
             }
         case Types.FAILURE:
             return { ...state, error: true, loading: false };
@@ -42,14 +44,14 @@ export const Types = {
   * Actions Creators
   */
   export const Creators = {
-      loginRequest: username => ({
+      loginRequest: (username, password) => ({
           type: Types.REQUEST,
-          payload: {username}
+          payload: {username, password}
       }),
 
-      loginSuccess: (username, password) => ({
+      loginSuccess: (username, password, user, token) => ({
           type: Types.SUCCESS,
-          payload: { username, password }
+          payload: { username, password, user, token }
       }),
 
       loginFailure: () => ({
