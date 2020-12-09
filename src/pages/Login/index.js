@@ -11,6 +11,7 @@ import {
     Image,
     ActivityIndicator
 } from "react-native";
+import AsyncStorage from '@react-native-community/async-storage'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -22,17 +23,24 @@ class Login extends Component {
         username: '',
         password: ''
     }
+    
+
+    componentDidUpdate() {
+        this.loadNextPage()
+    }
+
 
     handleSubmit = async () => {
         const { username, password } = this.state;
         const { loginRequest } = this.props;
 
-        
-        // console.log(username)
-        // console.log(password)
-        // console.log(loginRequest)
-        loginRequest(username, password)
-        
+        loginRequest(username, password)        
+    }
+
+    
+    loadNextPage = async () => {
+        const token = await AsyncStorage.getItem('@token')
+        console.log(token)
     }
 
     render() {
