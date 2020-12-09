@@ -32,11 +32,14 @@ class Login extends Component {
         // console.log(password)
         // console.log(loginRequest)
         loginRequest(username, password)
+        
     }
 
     render() {
         const { username, password } = this.state;
         const { error, loading } = this.props;
+
+        // console.log(this.props)
 
         return (
             <View style={styles.container} >
@@ -97,7 +100,9 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
     error: state.login.error,
-    loading: state.login.loading
+    loading: state.login.loading,
+    user: state.login.user,
+    token: state.login.token
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(LoginActions, dispatch)

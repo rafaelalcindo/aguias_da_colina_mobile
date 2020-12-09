@@ -31,7 +31,7 @@ export const Types = {
                 user: action.payload.user,
                 token: action.payload.token,
                 error: false,
-                loading: false
+                loading: true
             }
         case Types.FAILURE:
             return { ...state, error: true, loading: false };
@@ -49,9 +49,9 @@ export const Types = {
           payload: {username, password}
       }),
 
-      loginSuccess: (username, password, user) => ({
+      loginSuccess: (username, password, user, token) => ({
           type: Types.SUCCESS,
-          payload: { username, password, user }
+          payload: { username, password, user, token }
       }),
 
       loginFailure: () => ({

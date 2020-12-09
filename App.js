@@ -8,6 +8,8 @@ import Routes from './src/routes'
 import { Provider } from 'react-redux'
 import store from './src/store'
 
+import { setNavigator  } from './src/services/navigation'
+
 export default class App extends Component {
     render() {
         return (
@@ -17,7 +19,7 @@ export default class App extends Component {
                     backgroundColor="transparent"
                     translucent
                 />
-                <Routes/>
+                <Routes />
             </Provider>
         )
     }
