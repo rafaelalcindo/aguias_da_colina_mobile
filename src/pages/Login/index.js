@@ -16,6 +16,8 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as LoginActions } from '../../store/duck/login'
+
+import { setNavigator } from '../../services/navigation'
  
 class Login extends Component {
 
@@ -23,31 +25,32 @@ class Login extends Component {
         username: '',
         password: ''
     }
-    
 
-    componentDidUpdate() {
-        this.loadNextPage()
+    async componentDidMount () {
+        
     }
-
 
     handleSubmit = async () => {
         const { username, password } = this.state;
         const { loginRequest } = this.props;
 
-        loginRequest(username, password)        
+        loginRequest(username, password)
     }
 
-    
-    loadNextPage = async () => {
-        const token = await AsyncStorage.getItem('@token')
-        console.log(token)
+    async componentDidUpdate () {
+        let { token } = this.props
+        // let tokenStorage = await AsyncStorage.getItem('@token')
+
+        if (token != null) {
+            await AsyncStorage.setItem('@token', token)
+            this.props.navigation.navigate('Home')
+        }
     }
 
     render() {
         const { username, password } = this.state;
-        const { error, loading } = this.props;
-
-        // console.log(this.props)
+        const { error, loading, token } = this.props;
+        
 
         return (
             <View style={styles.container} >

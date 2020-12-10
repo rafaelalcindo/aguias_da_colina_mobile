@@ -6,10 +6,13 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Login from './pages/Login'
 import Home from './Home/index'
 import Especialidade from './Especialidade/index'
+import AsyncStorage from '@react-native-community/async-storage'
 
 const AppStack = createStackNavigator()
 
+
 const Routes = () => {
+
     return (
         <NavigationContainer>
             <AppStack.Navigator
@@ -19,7 +22,7 @@ const Routes = () => {
                         backgroundColor: '#f0f0f5'
                     }
                 }}
-                initialRouteName="Login"
+                initialRouteName="Home"
             >
                 <AppStack.Screen name="Login" component={Login} />
                 <AppStack.Screen name="Home" component={Home} />

@@ -4,7 +4,10 @@
 export const Types = {
     REQUEST: 'LOGIN_REQUEST',
     SUCCESS: 'LOGIN_SUCCESS',
-    FAILURE: 'LOGIN_FAILURE'
+    CHECK: 'LOGIN_CHECK',
+    AUTH: 'LOGIN_AUTH',
+    FAILURE: 'LOGIN_FAILURE',
+    LOGOUT: 'LOGIN_LOGOUT'
 }
 
 /**
@@ -35,6 +38,20 @@ export const Types = {
             }
         case Types.FAILURE:
             return { ...state, error: true, loading: false };
+        case Types.CHECK:
+            return { ...state, token: action.payload.token }
+        case Types.AUTH:
+            return { ...state, user: action.payload.user }
+        case Types.LOGOUT: 
+            return { 
+                ...state,
+                username: null,
+                password: null,
+                user: null,
+                token: null,
+                loading: false,
+                error: false
+            }
         default:
             return state;
      }
@@ -56,5 +73,20 @@ export const Types = {
 
       loginFailure: () => ({
           type: Types.FAILURE
+      }),
+
+      loginCheckUser: (token) => ({
+          type: Types.CHECK,
+          payload: { token }
+      }),
+
+      loginAuthUser: (user) => ({
+          type: Types.AUTH,
+          payload: { user }
+      }),
+
+      loginLogout: () => ({
+          type: Types.LOGOUT
       })
+      
   }
