@@ -8,6 +8,7 @@ export function setNavigator(ref) {
 }
 
 export function navigate(routeName, params) {
+    console.log(navigator)
     navigator.dispatch(
         CommonActions.navigate({
             name: routeName,
