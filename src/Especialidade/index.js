@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 
-import { Text, StyleSheet, View, ScrollView, FlatList } from "react-native";
+import { Text, StyleSheet, View, ScrollView, FlatList, BackHandler } from "react-native";
 
 export default class Especialidade extends Component {
+
     state = {
         especialidades: [
             {id: "1", nome: 'Cães', color: 'rgba(179, 179, 179, 0.7)'},

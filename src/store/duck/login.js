@@ -40,8 +40,6 @@ export const Types = {
             return { ...state, error: true, loading: false };
         case Types.CHECK:
             return { ...state, token: action.payload.token }
-        case Types.CHECK:
-            return { ...state, token: action.payload.token }
         case Types.AUTH:
             return { ...state, user: action.payload.user }
         case Types.LOGOUT: 

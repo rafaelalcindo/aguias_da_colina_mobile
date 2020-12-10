@@ -27,16 +27,7 @@ class Login extends Component {
     }
 
     async componentDidMount () {
-        setNavigator(this.props.navigation)
-
-        const token = await AsyncStorage.getItem('@token');
-        const { loginCheckUser } = this.props
-        console.log(this.props)
-        console.log(token)
-        if (token != undefined && token != null) {
-            loginCheckUser(token)
-            console.log(this.props)
-        }
+        
     }
 
     handleSubmit = async () => {
@@ -48,22 +39,13 @@ class Login extends Component {
 
     async componentDidUpdate () {
         let { token } = this.props
-        let tokenStorage = await AsyncStorage.getItem('@token')
+        // let tokenStorage = await AsyncStorage.getItem('@token')
 
-        console.log(this.props)
         if (token != null) {
             await AsyncStorage.setItem('@token', token)
-            // this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('Home')
         }
     }
-
-    // proximaPagina = () => {
-    //     console.log('entrou home 1')
-    //     const navigation = useNavigation();
-    //     console.log('entrou home')
-    //     navigation.navigate('Home')
-    // }
-
 
     render() {
         const { username, password } = this.state;

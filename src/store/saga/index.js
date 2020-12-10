@@ -51,21 +51,24 @@ function* checkUser(action) {
         const response = yield call(api.get, `api/auth/me`, config)
 
         if (response.data.id != undefined) {
-            yield put(LoginActios.loginAuthUser(response.data))
-            navigate('Home')
-        } else {
+            let user = response.data
             
+            yield put(LoginActios.loginAuthUser(user))            
+        } else {            
             yield put(LoginActios.loginLogout())
+            navigate('Login')
         }
         
     } catch (err) {
         console.log(err)
         yield put(LoginActios.loginLogout())
+        navigate('Login')
     }
 }
 
 function* logOutUser(action) {
     yield AsyncStorage.clear()
+    navigate('Login')
 }
 
 export default function* rootSaga() {
