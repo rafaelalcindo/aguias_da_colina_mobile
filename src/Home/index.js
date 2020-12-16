@@ -32,7 +32,7 @@ class Home extends Component {
           refreshing: false,
           token: null
         };
-        
+
       }
 
     // constructor() {
@@ -43,18 +43,18 @@ class Home extends Component {
     // }
 
     async componentWillMount() {
-        
+
         // BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick)
         setNavigator(this.props.navigation)
-        
+
 
         const token = await AsyncStorage.getItem('@token');
         console.log(token)
         this.setState({token})
 
         const { loginCheckUser, loginLogout } = this.props
-        
-        if (token != undefined && token != null) {            
+
+        if (token != undefined && token != null) {
             loginCheckUser(token)
         } else {
             loginLogout()
@@ -80,13 +80,13 @@ class Home extends Component {
 
     onRefresh = () => {
         const { loginCheckUser, loginLogout } = this.props
-        
+
         this.setState({refreshing: true});
-        
+
         loginCheckUser(this.state.token)
         this.setState({refreshing: false});
     }
-    
+
     render() {
 
         const { user } = this.props;
@@ -121,7 +121,7 @@ class Home extends Component {
                                     //     uri: 'https://instrutorgeorge.files.wordpress.com/2011/03/dscf6273.jpg'
                                     // }}
                                     source={
-                                        user.foto_perfil? { uri: `${link}${user.foto_perfil}` } 
+                                        user.foto_perfil? { uri: `${link}${user.foto_perfil}` }
                                             :
                                         require('../Assets/Imagens/user_icon.png')
                                     }
@@ -130,14 +130,15 @@ class Home extends Component {
                                 <ActivityIndicator size="small" color="#262626" />
                             }
                         </View>
-                        
+
                         <Menus pagina="Especialidade" nameIcon="dingding-o" title="Especialidades" />
                         <Menus pagina="Classe" nameIcon="filetext1" title="Classes" />
                         <Menus pagina="PontosIndividuais" nameIcon="table" title="Histórico de Pontos" />
+                        <Menus pagina="PontosUnidades" nameIcon="yuque" title="Pontos da Unidade" />
                         <Menus pagina="Eventos" nameIcon="enviroment" title="Eventos" />
                         <Menus pagina="Configuracao" nameIcon="idcard" title="Configurações" />
-                        
-                    </View>                   
+
+                    </View>
                 </View>
             </ScrollView>
         );
