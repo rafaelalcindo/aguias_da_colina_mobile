@@ -43,7 +43,7 @@ class Login extends Component {
 
         if (token != null) {
             await AsyncStorage.setItem('@token', token)
-            this.props.navigation.navigate('Home')
+            this.props.navigation.navigate('Home', { token })
         }
     }
 

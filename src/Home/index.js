@@ -20,6 +20,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as LoginActions } from '../store/duck/login'
 import { setNavigator } from '../services/navigation'
+import link from '../services/httpLink'
 
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -31,6 +32,7 @@ class Home extends Component {
           refreshing: false,
           token: null
         };
+        
       }
 
     // constructor() {
@@ -44,9 +46,10 @@ class Home extends Component {
         
         // BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick)
         setNavigator(this.props.navigation)
+        
 
         const token = await AsyncStorage.getItem('@token');
-        
+        console.log(token)
         this.setState({token})
 
         const { loginCheckUser, loginLogout } = this.props
@@ -69,12 +72,15 @@ class Home extends Component {
     //     return true;
     // }
 
-    componentDidMount() {
-    }
+    // componentDidUpdate() {
+    //     if (this.props.route.params != undefined) {
+    //         this.setState({ token: this.props.route.params.token })
+    //     }
+    // }
 
     onRefresh = () => {
         const { loginCheckUser, loginLogout } = this.props
-
+        
         this.setState({refreshing: true});
         
         loginCheckUser(this.state.token)
@@ -106,19 +112,28 @@ class Home extends Component {
                         <View
                             style={styles.logo_user}
                         >
-                            <Image
-                                style={styles.logo}
-                                // source={{
-                                //     // uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ3Gh0lfCeN36FlOO6-1IuOC2renxd_S1ae-Q&usqp=CAU'
-                                //     uri: 'https://instrutorgeorge.files.wordpress.com/2011/03/dscf6273.jpg'
-                                // }}
-                                source={require('../Assets/Imagens/user_icon.png')}
-                            />
+                            {
+                                user?
+                                <Image
+                                    style={styles.logo}
+                                    // source={{
+                                    //     // uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ3Gh0lfCeN36FlOO6-1IuOC2renxd_S1ae-Q&usqp=CAU'
+                                    //     uri: 'https://instrutorgeorge.files.wordpress.com/2011/03/dscf6273.jpg'
+                                    // }}
+                                    source={
+                                        user.foto_perfil? { uri: `${link}${user.foto_perfil}` } 
+                                            :
+                                        require('../Assets/Imagens/user_icon.png')
+                                    }
+                                />
+                                :
+                                <ActivityIndicator size="small" color="#262626" />
+                            }
                         </View>
                         
                         <Menus pagina="Especialidade" nameIcon="dingding-o" title="Especialidades" />
                         <Menus pagina="Classe" nameIcon="filetext1" title="Classes" />
-                        <Menus pagina="Historico" nameIcon="table" title="Histórico de Pontos" />
+                        <Menus pagina="PontosIndividuais" nameIcon="table" title="Histórico de Pontos" />
                         <Menus pagina="Eventos" nameIcon="enviroment" title="Eventos" />
                         <Menus pagina="Configuracao" nameIcon="idcard" title="Configurações" />
                         

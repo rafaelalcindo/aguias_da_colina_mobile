@@ -6,6 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Login from './pages/Login'
 import Home from './Home/index'
 import Especialidade from './Especialidade/index'
+import PontosIndividuais from './pages/PontosIndividuais'
+
 import AsyncStorage from '@react-native-community/async-storage'
 
 const AppStack = createStackNavigator()
@@ -27,6 +29,7 @@ const Routes = () => {
                 <AppStack.Screen name="Login" component={Login} />
                 <AppStack.Screen name="Home" component={Home} />
                 <AppStack.Screen name="Especialidade" component={Especialidade} />
+                <AppStack.Screen name="PontosIndividuais" component={PontosIndividuais} />
 
             </AppStack.Navigator>
         </NavigationContainer>
