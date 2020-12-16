@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Creators as EspecialidadesCreators } from '../store/duck/especialidades'
+
 import { Text, StyleSheet, View, ScrollView, FlatList, BackHandler } from "react-native";
 
-export default class Especialidade extends Component {
+import AsyncStorage from '@react-native-community/async-storage'
+
+class Especialidade extends Component {
+
+
 
     state = {
         especialidades: [
@@ -16,9 +24,6 @@ export default class Especialidade extends Component {
         ]
     }
 
-    // renderItem = ({ item }) => (
-        
-    // );
 
     render() {
         return (
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(77, 77, 255, 0.9)',
         borderBottomRightRadius: 100,
         borderTopRightRadius: 100
-        
+
     },
 
     titulo_pagina: {
@@ -80,3 +85,12 @@ const styles = StyleSheet.create({
     }
 
 });
+
+const mapStateToProps = state => ({
+    especialidades: state.especialidades.especialidades,
+    user: state.login.user
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators(EspecialidadesCreators, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Especialidade)
