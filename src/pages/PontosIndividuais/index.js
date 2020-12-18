@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as PontosIndividuaisCreators } from '../../store/duck/pontosIndividuais'
 
-import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator } from "react-native";
+import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator, TouchableOpacity } from "react-native";
 
 import { setNavigator } from '../../services/navigation'
 import Coins  from '../../Assets/Imagens/coins.png'
 
 import AsyncStorage from '@react-native-community/async-storage'
+import Icon from 'react-native-vector-icons/AntDesign'
 
 import styles from './styles'
 
@@ -19,7 +20,7 @@ class PontosIndividuais extends Component {
         super(props);
         this.state = {
           refreshing: false
-        };        
+        };
     }
 
     async componentDidMount()
@@ -39,10 +40,10 @@ class PontosIndividuais extends Component {
 
     loadPontos = async () => {
         this.setState({ refreshing: true })
-    
+
         const token = await AsyncStorage.getItem('@token');
         this.props.userPointRequest(token, this.props.user)
-    
+
         this.setState({ refreshing: false })
       }
 
@@ -50,12 +51,17 @@ class PontosIndividuais extends Component {
         const { user, pontos } = this.props;
         const { refreshing } = this.state;
         const loadingPart = <ActivityIndicator size="small" color="#262626" />;
-        
-        
+
+
         return(
             <View style={styles.container}>
                 <View style={styles.show_total_coin}>
                     <View style={styles.view_coins}>
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon style={styles.icon_back} name="arrowleft" size={30} color="#ffffff" />
+                        </TouchableOpacity>
                         <Image
                             style={styles.view_image}
                             source={Coins}
@@ -66,9 +72,9 @@ class PontosIndividuais extends Component {
 
                 <View style={styles.grupo_lista} >
 
-                    { 
+                    {
                         pontos?
-                            <FlatList 
+                            <FlatList
                                 data={pontos}
                                 keyExtractor={item => String(item.id)}
                                 renderItem={this.renderListItem}
@@ -78,7 +84,7 @@ class PontosIndividuais extends Component {
                         :
                         loadingPart
                     }
-                    
+
 
 
                 </View>

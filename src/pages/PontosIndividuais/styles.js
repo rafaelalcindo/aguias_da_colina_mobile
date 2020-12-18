@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 
     show_total_coin: {
         height: 140,
-        backgroundColor: 'rgba(77, 77, 255, 0.9)',    
+        backgroundColor: 'rgba(77, 77, 255, 0.9)',
         borderBottomRightRadius: 20,
         borderBottomLeftRadius: 20
     },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "800",
         marginTop: 5,
-        color: colors.light
+        color: colors.white
     },
 
     grupo_lista: {
@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: colors.darkTransparent,
         marginBottom: 4
+    },
+    icon_back: {
+        marginTop: 5,
+        marginRight: 10
     }
 })
 

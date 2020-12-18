@@ -8,7 +8,9 @@ import {
     ScrollView,
     BackHandler,
     RefreshControl,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity,
+    ImageBackground
 } from 'react-native'
 
 import Menus from './Menus/Menus'
@@ -23,6 +25,7 @@ import { setNavigator } from '../services/navigation'
 import link from '../services/httpLink'
 
 import AsyncStorage from '@react-native-community/async-storage'
+import Icon from 'react-native-vector-icons/AntDesign'
 
 class Home extends Component {
 
@@ -33,14 +36,14 @@ class Home extends Component {
           token: null
         };
 
-      }
 
-    // constructor() {
-    //     super();
-    //     console.log('contructor')
 
-    //     // this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
-    // }
+
+    }
+
+    async componentDidMount() {
+
+    }
 
     async componentWillMount() {
 
@@ -61,23 +64,6 @@ class Home extends Component {
         }
     }
 
-    // componentWillUnmount() {
-    //     console.log('entrou')
-    //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick)
-    // }
-
-    // handleBackButtonClick() {
-    //     console.log('evento Clique')
-    //     BackHandler.exitApp();
-    //     return true;
-    // }
-
-    // componentDidUpdate() {
-    //     if (this.props.route.params != undefined) {
-    //         this.setState({ token: this.props.route.params.token })
-    //     }
-    // }
-
     onRefresh = () => {
         const { loginCheckUser, loginLogout } = this.props
 
@@ -92,7 +78,7 @@ class Home extends Component {
         const { user } = this.props;
         const loadingPart = <ActivityIndicator size="small" color="#262626" />;
 
-        return (
+        const pageRender = user?
             <ScrollView
                 refreshControl={
                     <RefreshControl refreshing={this.state.refreshing} onRefresh={this.onRefresh} />
@@ -105,7 +91,17 @@ class Home extends Component {
                                 style={styles.view_image}
                                 source={Coins}
                             />
-                            <Text style={styles.view_image_text} > { user? user.pontos : loadingPart } Aguitos </Text>
+                            <Text style={styles.view_image_text} >
+                                { user? user.pontos : loadingPart } Aguitos
+
+                            </Text>
+
+                            <TouchableOpacity
+                                onPress={ () => this.props.loginLogout() }
+                            >
+                                <Icon style={styles.icon_logout} name="logout" size={30} color="#595959" />
+                            </TouchableOpacity>
+
                         </View>
                     </View>
                     <View style={styles.show_menus} >
@@ -141,6 +137,20 @@ class Home extends Component {
                     </View>
                 </View>
             </ScrollView>
+
+        :
+
+        <View style={styles.container_2}>
+            <ImageBackground
+
+                style={styles.image_background}
+                source={require('../Assets/Imagens/background_loading_2.png')}
+            >
+            </ImageBackground>
+        </View>;
+
+        return (
+            pageRender
         );
     }
 }
