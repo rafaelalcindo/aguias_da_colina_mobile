@@ -134,6 +134,8 @@ class Home extends Component {
                         <Menus pagina="Eventos" nameIcon="enviroment" title="Eventos" />
                         <Menus pagina="Configuracao" nameIcon="idcard" title="Configurações" />
 
+                        { (user.nivel == 'Administrativo' || user.nivel == 2)? <Menus pagina="Eventos" nameIcon="pluscircleo" title="Add. Desbravador no Evento" />  : null }
+
                     </View>
                 </View>
             </ScrollView>
