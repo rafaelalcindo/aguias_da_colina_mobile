@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as PontosIndividuaisCreators } from '../../store/duck/pontosIndividuais'
 
-import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator, TouchableOpacity, ScrollView } from "react-native";
 
 import { setNavigator } from '../../services/navigation'
 import Coins  from '../../Assets/Imagens/coins.png'
@@ -84,8 +84,6 @@ class PontosIndividuais extends Component {
                         :
                         loadingPart
                     }
-
-
 
                 </View>
 

@@ -18,8 +18,6 @@ export function* getEventos(action) {
 
         const response = yield call(api.get, `/api/eventos?ano=${2020}`, config)
 
-        console.log(response)
-
         if (response.status == 200 && response.data.error == undefined) {
             let eventos = response.data;
 
@@ -30,4 +28,8 @@ export function* getEventos(action) {
         console.log(err)
         yield put(LoginActions.loginFailure())
     }
+}
+
+export function* getUsersEventos(action) {
+
 }

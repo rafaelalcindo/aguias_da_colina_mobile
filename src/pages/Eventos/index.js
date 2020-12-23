@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, useRef } from 'react'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as EventosCreators } from '../../store/duck/eventos'
 
-import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, Image, FlatList, ActivityIndicator, TouchableOpacity, Button, ScrollView } from "react-native";
+import { Modalize } from 'react-native-modalize'
 
 import { setNavigator } from '../../services/navigation'
 
@@ -21,6 +22,8 @@ class Eventos extends Component {
         }
     }
 
+    modalizeRef = React.createRef();
+
     async componentDidMount()
     {
         setNavigator(this.props.navigation)
@@ -31,11 +34,71 @@ class Eventos extends Component {
     }
 
     renderListItem = ({item}) => (
-        <View style={styles.view_ponto}>
-            <Text style={styles.show_ponto} >R$ {item.ponto_evento}</Text>
-            <Text style={styles.show_title} > { item.titulo }</Text>
-            <Text style={styles.show_description} > { item.descricao }</Text>
-            <Text style={styles.show_date_coin} > { item.data_evento }</Text>
+        <TouchableOpacity onPress={this.onOpen} >
+            <View style={styles.view_ponto}>
+                <Text style={styles.show_ponto} >R$ {item.ponto_evento}</Text>
+                <Text style={styles.show_title} > { item.titulo }</Text>
+                <Text style={styles.show_description} > { item.descricao }</Text>
+                <Text style={styles.show_date_coin} > { item.data_evento }</Text>
+            </View>
+        </TouchableOpacity>
+    )
+
+    renderModalListUser = () => (
+        <View style={styles.container_modal} >
+            <View style={styles.space_modal_content} >
+
+                <ScrollView>
+
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+                    <View style={styles.user_list}>
+                        <Text style={styles.text_user} >Luiz Labral</Text>
+                    </View>
+
+                </ScrollView>
+
+
+            </View>
+
+            <View style={styles.space_modal_bottom} >
+                <Button
+                    title="Adicionar Manual"
+                />
+                <Text></Text>
+                <Button
+                    title="Adicionar QRCode"
+                />
+            </View>
         </View>
     )
 
@@ -48,11 +111,16 @@ class Eventos extends Component {
         this.setState({ refreshing: false })
     }
 
+    onOpen = () => {
+        this.modalizeRef.current?.open();
+    };
+
     render() {
 
         const { user, eventos } = this.props;
         const { refreshing } = this.state
         const loadingPart = <ActivityIndicator size="small" color="#262626" />
+        const conteudoModal = this.renderModalListUser();
 
         return (
             <View style={styles.container}>
@@ -83,6 +151,10 @@ class Eventos extends Component {
                     }
 
                 </View>
+
+                <Modalize ref={this.modalizeRef}>
+                    { conteudoModal }
+                </Modalize>
 
             </View>
         )

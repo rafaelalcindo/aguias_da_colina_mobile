@@ -10,7 +10,7 @@ import { login, checkUser, logOutUser } from './login'
 import { getPoints } from './pontosIndividuais'
 import { getUnityPoints } from './pontosUnidades'
 import { getEspecialidades } from './especialidades'
-import { getEventos } from './eventos'
+import { getEventos, getUsersEventos } from './eventos'
 
 export default function* rootSaga() {
     return yield all(
@@ -18,10 +18,13 @@ export default function* rootSaga() {
             takeLatest(LoginTypes.REQUEST, login),
             takeLatest(LoginTypes.CHECK, checkUser),
             takeLatest(LoginTypes.LOGOUT, logOutUser),
+
             takeLatest(PontosIndividuaisTypes.REQUEST, getPoints),
             takeLatest(PontosUnidadesTypes.REQUEST, getUnityPoints),
             takeLatest(EspecialidadesTypes.REQUEST, getEspecialidades),
-            takeLatest(EventosTypes.REQUEST, getEventos)
+
+            takeLatest(EventosTypes.REQUEST, getEventos),
+            takeLatest(EventosTypes.USER_EVENT_REQUEST, getUsersEventos)
         ]
     )
 }

@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     },
 
     grupo_lista: {
+        flex: 1,
         padding: metrics.basePadding
     },
 
@@ -86,7 +87,40 @@ const styles = StyleSheet.create({
     icon_back: {
         marginTop: 5,
         marginRight: 10
+    },
+
+    // Parte do Modal
+
+
+    container_modal: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: 10
+    },
+
+    space_modal_content: {
+        // backgroundColor: '#f2f2f2',
+        height: 400,
+        marginBottom: 5
+    },
+
+    space_modal_bottom: {
+        height: 100,
+        backgroundColor: colors.white
+    },
+
+    user_list: {
+        padding: 5,
+        marginBottom: 5
+    },
+
+    text_user: {
+        fontSize: 20,
+        fontWeight: '700',
+        borderBottomWidth: 1
     }
+
 })
 
 export default styles;
