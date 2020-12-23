@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Creators as EspecialidadesCreators } from '../store/duck/especialidades'
 
-import { Text, StyleSheet, View, ScrollView, FlatList, BackHandler } from "react-native";
+import { Text, StyleSheet, View, ScrollView, FlatList, BackHandler, TouchableOpacity } from "react-native";
 
 import AsyncStorage from '@react-native-community/async-storage'
+import Icon from 'react-native-vector-icons/AntDesign'
 
 class Especialidade extends Component {
 
@@ -29,7 +30,15 @@ class Especialidade extends Component {
         return (
             <ScrollView>
                 <View style={styles.titulo_pagina_view}>
-                    <Text style={styles.titulo_pagina} >Especialidades</Text>
+
+                    <Text style={styles.titulo_pagina} >
+                        <TouchableOpacity
+                            onPress={() => this.props.navigation.goBack()}
+                        >
+                            <Icon style={styles.icon_back} name="arrowleft" size={30} color="#ffffff" />
+                        </TouchableOpacity>
+                        Especialidades
+                    </Text>
                 </View>
 
                 {
@@ -82,6 +91,11 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 20,
         fontWeight: "700"
+    },
+
+    icon_back: {
+        marginTop: 5,
+        marginRight: 10
     }
 
 });

@@ -27,10 +27,10 @@ export function* login(action) {
 
             let user = response.data.user;
             let token = response.data.token.access_token;
-            
+
             yield put(LoginActios.loginSuccess(username, password, user, token))
-            
-            
+
+
         } else {
             yield put(LoginActios.loginFailure())
         }
@@ -52,13 +52,13 @@ export function* checkUser(action) {
 
         if (response.data.id != undefined) {
             let user = response.data
-            
-            yield put(LoginActios.loginAuthUser(user))            
-        } else {            
+
+            yield put(LoginActios.loginAuthUser(user))
+        } else {
             yield put(LoginActios.loginLogout())
             navigate('Login')
         }
-        
+
     } catch (err) {
         console.log(err)
         yield put(LoginActios.loginLogout())

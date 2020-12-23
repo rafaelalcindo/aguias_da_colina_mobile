@@ -7,6 +7,13 @@ const styles = StyleSheet.create({
         flex: 1
     },
 
+    title_bar: {
+        fontSize: 20,
+        color: colors.white,
+        fontWeight: '700',
+        marginTop: 5
+    },
+
     show_total_coin: {
         height: 140,
         backgroundColor: 'rgba(77, 77, 255, 0.9)',
@@ -38,10 +45,19 @@ const styles = StyleSheet.create({
     },
 
     view_ponto: {
-        borderBottomColor: colors.darker,
-        borderBottomWidth: 2,
         marginBottom: 10,
-        padding: 10
+        padding: 5,
+        margin: 10,
+        backgroundColor: colors.white,
+        borderRadius: 7,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+        },
+        shadowOpacity: 0.32,
+        shadowRadius: 5.46,
+        elevation: 9
     },
 
     show_ponto: {
@@ -50,8 +66,14 @@ const styles = StyleSheet.create({
         marginBottom: 4
     },
 
+    show_title: {
+        fontSize: 18,
+        color: colors.dark,
+        fontWeight: '700'
+    },
+
     show_description: {
-        fontSize: 17,
+        fontSize: 14,
         color: colors.darkTransparent,
         marginBottom: 4
     },

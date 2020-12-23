@@ -8,6 +8,7 @@ import Home from './Home/index'
 import Especialidade from './Especialidade/index'
 import PontosIndividuais from './pages/PontosIndividuais'
 import PontosUnidades from './pages/PontosUnidades'
+import Eventos from './pages/Eventos'
 
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -32,6 +33,7 @@ const Routes = () => {
                 <AppStack.Screen name="Especialidade" component={Especialidade} />
                 <AppStack.Screen name="PontosIndividuais" component={PontosIndividuais} />
                 <AppStack.Screen name="PontosUnidades" component={PontosUnidades} />
+                <AppStack.Screen name="Eventos" component={Eventos} />
 
             </AppStack.Navigator>
         </NavigationContainer>

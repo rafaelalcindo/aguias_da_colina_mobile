@@ -1,10 +1,15 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-    
+
     container: {
         flex: 1,
-        
+
+    },
+
+    container_2: {
+        flex: 1,
+        flexDirection: "column"
     },
 
     view_coins: {
@@ -29,7 +34,7 @@ const styles = StyleSheet.create({
     show_details: {
         height: 180,
         backgroundColor: '#fff',
-        
+
     },
 
     logo_user: {
@@ -40,7 +45,7 @@ const styles = StyleSheet.create({
         left: "50%",
         top: -70,
         borderRadius: 60,
-        
+
         backgroundColor: '#fff',
         shadowColor: "#000",
         shadowOffset: {
@@ -62,15 +67,27 @@ const styles = StyleSheet.create({
     },
 
     show_menus: {
-        
-        backgroundColor: 'rgba(77, 77, 255, 0.9)',        
+
+        backgroundColor: 'rgba(77, 77, 255, 0.9)',
         flex: 1,
         flexWrap: "wrap",
-        flexDirection: "row",        
+        flexDirection: "row",
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         padding: 50
-        
+
+    },
+
+    icon_logout: {
+        marginTop: 10,
+        marginLeft: 150
+    },
+
+    image_background: {
+
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
     }
 })
 
