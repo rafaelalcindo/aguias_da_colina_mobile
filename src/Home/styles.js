@@ -74,13 +74,13 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        padding: 50
+        padding: 40
 
     },
 
     icon_logout: {
         marginTop: 10,
-        marginLeft: 150
+        marginLeft: 125
     },
 
     image_background: {

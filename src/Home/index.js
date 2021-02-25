@@ -127,14 +127,13 @@ class Home extends Component {
                             }
                         </View>
 
-                        <Menus pagina="Especialidade" nameIcon="dingding-o" title="Especialidades" />
-                        <Menus pagina="Classe" nameIcon="filetext1" title="Classes" />
+
                         <Menus pagina="PontosIndividuais" nameIcon="table" title="Histórico de Pontos" />
                         <Menus pagina="PontosUnidades" nameIcon="yuque" title="Pontos da Unidade" />
-                        <Menus pagina="Eventos" nameIcon="enviroment" title="Eventos" />
                         <Menus pagina="Configuracao" nameIcon="idcard" title="Configurações" />
 
                         { (user.nivel == 'Administrativo' || user.nivel == 2)? <Menus pagina="Eventos" nameIcon="pluscircleo" title="Add. Desbravador no Evento" />  : null }
+                        { (user.nivel == 'Administrativo' || user.nivel == 2)? <Menus pagina="HoraPontos" nameIcon="hourglass" title="Marcar Hora" />  : null }
 
                     </View>
                 </View>
