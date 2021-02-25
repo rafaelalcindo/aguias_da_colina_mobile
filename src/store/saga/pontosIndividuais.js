@@ -11,17 +11,17 @@ export function* getPoints(action) {
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
-                
+
             }
         }
 
-
+        console.log(user.id)
         const response = yield call(api.get, `/api/pontousuario/usuario/${user.id}`, config)
 
         if (response.status == 200 && response.data.error == undefined) {
             let pontos = response.data;
-            
-            yield put(PontosIndividuaisActions.userPointSuccess(pontos))            
+
+            yield put(PontosIndividuaisActions.userPointSuccess(pontos))
         } else {
             // yield put(PontosIndividuaisActions.userPointFailure())
             yield put(LoginActios.loginFailure())

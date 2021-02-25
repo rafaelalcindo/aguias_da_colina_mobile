@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     },
 
     grupo_lista: {
+        flex: 1,
         padding: metrics.basePadding
     },
 

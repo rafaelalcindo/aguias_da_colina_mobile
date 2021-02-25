@@ -9,6 +9,7 @@ import Especialidade from './Especialidade/index'
 import PontosIndividuais from './pages/PontosIndividuais'
 import PontosUnidades from './pages/PontosUnidades'
 import Eventos from './pages/Eventos'
+import HoraPontos from './pages/HoraPontos'
 
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -34,6 +35,7 @@ const Routes = () => {
                 <AppStack.Screen name="PontosIndividuais" component={PontosIndividuais} />
                 <AppStack.Screen name="PontosUnidades" component={PontosUnidades} />
                 <AppStack.Screen name="Eventos" component={Eventos} />
+                <AppStack.Screen name="HoraPontos" component={HoraPontos} />
 
             </AppStack.Navigator>
         </NavigationContainer>
